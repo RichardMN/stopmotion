@@ -132,6 +132,18 @@ def play():
                 return
             else:
                 fRate()
+
+def save():
+    global key
+    global AnimFrameRate
+    global screen_width
+    global screen_height
+    out = cv.VideoWriter('output.avi', cv.VideoWriter_fourcc(*'DIVX'),
+        AnimFrameRate, (screen_width, screen_height))
+    for i in range(len(seq)):
+        out.write(seq[i])
+    out.release()
+
 def reset():
     global black
     global seq
@@ -173,7 +185,7 @@ while key!= ord('q'):
     cv2.imshow('video', black)
 
     key = cv2.waitKey(1) & 0xFF #keys are listened at this line
-    
+
     if (key == ord('c')):# or GPIO.input(6):
         for i in range(0,9):
             cv2.rectangle(black,(i*icon_width,int(screen_height*0.9)),(icon_width + i*icon_width,screen_height),(255,255,255),3)
@@ -214,6 +226,8 @@ while key!= ord('q'):
                             cv2.rectangle(black,((actIcon-1)*icon_width,int(screen_height*0.9)),(icon_width + (actIcon-1)*icon_width,screen_height),(0,255,0),3)
                     ovlay()
                 else:
+                    if (key == ord('s')):# or GPIO.input(17):
+                        save()
                     fRate()
 
 cv2.destroyAllWindows()
