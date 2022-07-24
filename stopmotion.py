@@ -138,7 +138,7 @@ def save():
     global AnimFrameRate
     global screen_width
     global screen_height
-    out = cv.VideoWriter('output.avi', cv.VideoWriter_fourcc(*'DIVX'),
+    out = cv2.VideoWriter('output.avi', cv2.VideoWriter_fourcc(*'DIVX'),
         AnimFrameRate, (screen_width, screen_height))
     for i in range(len(seq)):
         out.write(seq[i])
