@@ -10,6 +10,7 @@ import numpy as np
 from time import sleep
 from tkinter import *
 from imutils.video import WebcamVideoStream # https://github.com/jrosebr1/imutils
+from datetime import datetime
 import imutils
 import sys
 #from threading import Thread
@@ -136,12 +137,18 @@ def play():
 def save():
     global key
     global AnimFrameRate
-    global screen_width
-    global screen_height
-    out = cv.VideoWriter('output.avi', cv.VideoWriter_fourcc(*'DIVX'),
-        AnimFrameRate, (screen_width, screen_height))
-    for i in range(len(seq)):
-        out.write(seq[i])
+    global vid_width
+    global vid_height
+    global overlay
+    now = datetime.now()
+    filename = now.strftime("output-%H%M%S.avi")
+    out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc(*'MJPG'),
+        AnimFrameRate, (vid_width, vid_height), True)
+    for i in range(0, actSeqFrame):
+        overlay = np.zeros((vid_height,vid_width,3), np.uint8)
+        overlay[0:vid_height, 0:vid_width] = seq[i]
+        cv2.imshow('video', overlay)
+        out.write(overlay)
     out.release()
 
 def reset():
