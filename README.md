@@ -26,7 +26,7 @@ Due to multithreading tasks and some graphical processes the script uses some th
 - [numpy](https://github.com/numpy/numpy)
 - [imutils](https://github.com/jrosebr1/imutils)
 
-### Instalation
+### Installation
 All the packages are completely `pip`-installable. If it's not already installed, open the terminal and run the following codes (internet connection is required):
 ```
 $ sudo pip install opencv
