@@ -54,10 +54,10 @@ The table bellow shows all available commands, keys and GPIO's associated each s
 | CAPTURE | Pick current frame of the video and add to the sequence or back to *capture mode* when playing a sequence | `c` | `6` |
 | UNDO | Delete last frame of the sequence | `a` | `17` |
 | PLAY | Play sequence animation | `p` | `5` |
+| SAVE | Save animation | `s` | `-` |
 | RESET | Delete all frames | `r` | `4` |
 | INCREASE RATE | Increase animation FPS | `m` | `-` |
 | DECREASE RATE | Decrease animation FPS | `n` | `-` |
 | QUIT | Exit application | `q` | `-` |
 
-
-
+The SAVE function will write to a time-stamped file (output-%H%M%S.avi) in the current working directory using the MJPG encoder. Time stamping avoids overwriting earlier versions but this may be modified. The saved animations may be large. The save function has been tested with Python 3.6.8 on MacOS.
